@@ -40,3 +40,27 @@ const fs = require('fs')
 const input = fs.readFileSync('./input.txt').toString().split("\n");
 //console.log(input)
 
+//Step 1:
+//Group and total each "elf"
+//Step 2:
+//Compare to next elf and keep  highest value
+//Step 3:
+//Console.log max total
+
+let runningTotal = 0;
+let maxTotal = 0;
+const runningArray = [];
+
+for (let i = 0; i < input.length; i++) {
+  const curItem = input[i];
+  if (curItem === '') {
+    // maxTotal = Math.max(maxTotal, runningTotal)
+    runningArray.push(runningTotal);
+    runningTotal = 0;
+  } else {
+    runningTotal += Number(curItem)
+  }
+}
+;
+// console.log(maxTotal)
+console.log(runningArray.sort(function(a, b) { return b - a }).slice(0, 3).reduce((acc, cur) => acc + cur, 0))
